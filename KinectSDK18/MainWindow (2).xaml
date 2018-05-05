@@ -1,0 +1,76 @@
+﻿<!--<Window x:Class="KinectSDK18.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KinectSDK18"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        
+    </Grid>
+</Window>-->
+
+<Window x:Class="WPFKinectSDK18.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+         xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:k="http://schemas.microsoft.com/kinect/2013"
+       xmlns:Controls="clr-namespace:KinectControls;assembly=KinectControls"
+        xmlns:local="clr-namespace:WPFKinectSDK18"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+
+    <Grid Margin="-4,10,4.4,-10.2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="29*"/>
+            <RowDefinition Height="292*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="28*"/>
+            <ColumnDefinition Width="9*"/>
+        </Grid.ColumnDefinitions>
+        <k:KinectSensorChooserUI HorizontalAlignment="Center" VerticalAlignment="Top" Name="kinectChooser" Margin="239,0,113,0" Grid.RowSpan="2" >
+
+        </k:KinectSensorChooserUI>
+
+
+        <Label x:Name="KinectStatus" Content="Current Kinect Status" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Margin="140,84,10,165" Grid.Row="1" />
+
+        <TextBlock x:Name="LeftWrist" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Left Wrist" VerticalAlignment="Top"/>
+        <TextBlock Canvas.ZIndex="3" x:Name="XValueLeft" HorizontalAlignment="Left" Margin="25,1,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.Row="1"/>
+        <TextBlock Canvas.ZIndex="3" x:Name="XLeft" HorizontalAlignment="Left" Margin="10,1,0,0" TextWrapping="Wrap" Text="X:" VerticalAlignment="Top" Grid.Row="1"/>
+        <TextBlock x:Name="YValueLeft" HorizontalAlignment="Left" Margin="25,21,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Grid.Row="1"/>
+        <TextBlock x:Name="YLeft" HorizontalAlignment="Left" Margin="10,21,0,0" TextWrapping="Wrap" Text="Y:" VerticalAlignment="Top" Grid.Row="1"/>
+        <TextBlock x:Name="ZValueLeft" HorizontalAlignment="Left" Margin="25,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="-2.933,3.159" Grid.Row="1"/>
+        <TextBlock x:Name="ZLeft" HorizontalAlignment="Left" Margin="10,41,0,0" TextWrapping="Wrap" Text="Z:" VerticalAlignment="Top" RenderTransformOrigin="0.165,0.661" Grid.Row="1"/>
+
+        <TextBlock x:Name="RightWrist" HorizontalAlignment="Left" Margin="39,13,0,0" TextWrapping="Wrap" Text="Right Wrist" VerticalAlignment="Top" Grid.Column="1"/>
+        <TextBlock x:Name="XValueRight" HorizontalAlignment="Left" Margin="55,4,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="14.311,3.246" Grid.Column="1" Grid.Row="1"/>
+        <TextBlock x:Name="XRight" HorizontalAlignment="Left" Margin="39,4,0,0" TextWrapping="Wrap" Text="X:" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1"/>
+        <TextBlock x:Name="YValueRight" HorizontalAlignment="Left" Margin="55,24,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="6.452,3.458" Grid.Column="1" Grid.Row="1"/>
+        <TextBlock x:Name="YRight" HorizontalAlignment="Left" Margin="39,24,0,0" TextWrapping="Wrap" Text="Y:" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1"/>
+        <TextBlock x:Name="ZValueRight" HorizontalAlignment="Left" Margin="55,44,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="-2.933,3.159" Grid.Column="1" Grid.Row="1"/>
+        <TextBlock x:Name="ZRight" HorizontalAlignment="Left" Margin="39,44,0,0" TextWrapping="Wrap" Text="Z:" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1"/>
+
+        <TextBlock x:Name="LeftGesture" HorizontalAlignment="Left" Margin="10,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Left Hand:" Grid.Row="1"/>
+        <TextBlock x:Name="RightGesture" HorizontalAlignment="Left" Margin="39,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Right Hand:" Grid.Column="1" Grid.Row="1"/>
+        <TextBlock x:Name="LeftRaised" HorizontalAlignment="Left" Margin="10,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="1"/>
+        <TextBlock x:Name="RightRaised" HorizontalAlignment="Left" Margin="39,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1"/>
+        <Button Canvas.ZIndex="1" Name="RecordButton" Height="47" FontSize="10" VerticalAlignment="Top" Click="RecordButton_Click" Margin="37,3,28.4,0" Grid.Column="1" RenderTransformOrigin="-0.206,3.093" Grid.RowSpan="2" >Start!</Button>
+        <TextBox Canvas.ZIndex="0" Name="OutputTextbox" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="18" Height="33" Margin="0,7,0,0" Grid.RowSpan="2"/>
+        <!--<TextBox Name="TestTextbox" VerticalAlignment="Top" TextWrapping="Wrap" FontSize="18" Grid.ColumnSpan="2" Margin="49,113,10.4,0"/>-->
+
+        <!--<DockPanel Margin="10">
+            <TextBox Margin="0,10,0,175.8" Name="txtSpeech" AcceptsReturn="True" />
+        </DockPanel>-->
+        <Canvas  Name="canvas" Width="640" Height="480" Grid.ColumnSpan="2" Margin="-50,0,-71.6,-159" Grid.RowSpan="2">
+
+            <Controls:KinectCursor  Canvas.ZIndex="3" x:Name="cursor" Width="64" Height="37" Canvas.Left="101" Canvas.Top="186" Grid.Row="1"  />
+            <m:Map x:Name="myMap" CredentialsProvider="EnterMapKeyHere" Mode="Road" Width="1596" Height="1223" Grid.ColumnSpan="2" Canvas.Left="-472" Canvas.Top="-577"/>
+        </Canvas>
+    </Grid>
+
+</Window>
